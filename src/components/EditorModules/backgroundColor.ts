@@ -3,14 +3,20 @@ import {
 } from 'draft-js'
 import { RenderConfig } from 'draft-js-export-html'
 
+export const commands = {
+  BG_RED: 'BG_RED',
+  BG_GREEN: 'BG_GREEN',
+  BG_BLUE: 'BG_BLUE'
+}
+
 export const backgroundColorStyleMap: DraftStyleMap = {
-  BG_RED: {
+  [commands.BG_RED]: {
     backgroundColor: '#F00',
   },
-  BG_GREEN: {
+  [commands.BG_GREEN]: {
     backgroundColor: '#0F0',
   },
-  BG_BLUE: {
+  [commands.BG_BLUE]: {
     backgroundColor: '#00F',
   },
 }

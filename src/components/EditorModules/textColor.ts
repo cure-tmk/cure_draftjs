@@ -3,14 +3,20 @@ import {
 } from 'draft-js'
 import { RenderConfig } from 'draft-js-export-html'
 
+export const commands = {
+  RED: 'RED',
+  GREEN: 'GREEN',
+  BLUE: 'BLUE'
+}
+
 export const textColorStyleMap: DraftStyleMap = {
-  RED: {
+  [commands.RED]: {
     color: '#F00',
   },
-  GREEN: {
+  [commands.GREEN]: {
     color: '#0F0',
   },
-  BLUE: {
+  [commands.BLUE]: {
     color: '#00F',
   },
 }

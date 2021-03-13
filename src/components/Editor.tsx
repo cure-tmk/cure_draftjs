@@ -11,13 +11,22 @@ import * as React from 'react'
 import 'draft-js/dist/Draft.css'
 import '~/components/Editor.css'
 import {
+  commands as backgroundColorCommand,
   backgroundColorStyleMap,
   backgroundColorRenderConfig,
 } from '~/components/EditorModules/backgroundColor'
+import { commands as basicCommands } from '~/components/EditorModules/basic'
 import {
+  commands as textColorCommand,
   textColorStyleMap,
   textColorRenderConfig,
 } from '~/components/EditorModules/textColor'
+
+const commands: { [styleNmae: string]: string } = {
+  ...backgroundColorCommand,
+  ...basicCommands,
+  ...textColorCommand,
+}
 
 const inlineStyleMap: DraftStyleMap = {
   ...textColorStyleMap,
@@ -54,13 +63,16 @@ const Editor: React.FC = () => {
     <>
       <h1>Draft.js Example</h1>
       <div>
-        <button onClick={() => applyInlineStyle('BOLD')} type="button">
+        <button onClick={() => applyInlineStyle(commands.BOLD)} type="button">
           bold
         </button>
-        <button onClick={() => applyInlineStyle('ITALIC')} type="button">
+        <button onClick={() => applyInlineStyle(commands.ITALIC)} type="button">
           italic
         </button>
-        <button onClick={() => applyInlineStyle('UNDERLINE')} type="button">
+        <button
+          onClick={() => applyInlineStyle(commands.UNDERLINE)}
+          type="button"
+        >
           underline
         </button>
         {/* color */}
