@@ -27,6 +27,10 @@ module.exports = {
         include: [resolve('src')],
         use: 'ts-loader',
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      },
     ],
   },
   devServer: {
