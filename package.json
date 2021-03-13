@@ -27,6 +27,11 @@
     "fix:prettier": "yarn prettier --write"
   },
   "dependencies": {
+    "@draft-js-plugins/anchor": "^4.1.0",
+    "@draft-js-plugins/buttons": "^4.1.0",
+    "@draft-js-plugins/editor": "^4.1.0",
+    "@draft-js-plugins/inline-toolbar": "^4.1.1",
+    "@draft-js-plugins/linkify": "^4.1.0",
     "@emotion/core": "^11.0.0",
     "@emotion/styled": "^11.1.5",
     "draft-js": "^0.11.7",

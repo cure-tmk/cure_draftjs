@@ -1,14 +1,17 @@
-import styled from '@emotion/styled'
+import createAnchorPlugin from '@draft-js-plugins/anchor'
 import {
-  DraftStyleMap,
-  Editor as DraftJSEditor,
-  EditorState,
-  RichUtils,
-} from 'draft-js'
+  ItalicButton,
+  BoldButton,
+  UnderlineButton,
+} from '@draft-js-plugins/buttons'
+import DraftJSEditor from '@draft-js-plugins/editor'
+import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar'
+import createLinkifyPlugin from '@draft-js-plugins/linkify'
+import styled from '@emotion/styled'
+import { DraftStyleMap, EditorState, RichUtils } from 'draft-js'
 import { RenderConfig, stateToHTML } from 'draft-js-export-html'
 import * as React from 'react'
 
-import 'draft-js/dist/Draft.css'
 import '~/components/Editor.css'
 import {
   commands as backgroundColorCommand,
@@ -37,6 +40,14 @@ const inlineStyleOptions: { [styleName: string]: RenderConfig } = {
   ...textColorRenderConfig,
   ...backgroundColorRenderConfig,
 }
+
+const anchorPlugin = createAnchorPlugin()
+const linkifyPlugin = createLinkifyPlugin()
+const inlineToolbarPlugin = createInlineToolbarPlugin()
+
+const { InlineToolbar } = inlineToolbarPlugin
+
+const plugins = [inlineToolbarPlugin, linkifyPlugin, anchorPlugin]
 
 const Editor: React.FC = () => {
   const [editorState, setEditorState] = React.useState(() =>
@@ -105,9 +116,19 @@ const Editor: React.FC = () => {
           customStyleMap={inlineStyleMap}
           editorState={editorState}
           onChange={handleChange}
+          plugins={plugins}
         />
+        <InlineToolbar>
+          {(externalProps) => (
+            <>
+              <BoldButton {...externalProps} />
+              <ItalicButton {...externalProps} />
+              <UnderlineButton {...externalProps} />
+              <anchorPlugin.LinkButton {...externalProps} />
+            </>
+          )}
+        </InlineToolbar>
       </EditorWrapper>
-
       <p>result html</p>
       <pre>{contentHtml}</pre>
     </>
