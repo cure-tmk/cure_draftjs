@@ -1,0 +1,8 @@
+# project
+node_modules/
+
+# logs
+**/*.log
+
+# macos
+.DS_Store
